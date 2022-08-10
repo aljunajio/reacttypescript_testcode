@@ -1,12 +1,11 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { Header } from './components/Header';
 
 function App() {
-  const name = "Pedo"
   return (
     <div className="App">
-        {name}
+      <Header title="This is title" color="red" />
     </div>
   );
 }
