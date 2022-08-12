@@ -2,32 +2,38 @@ import React, { useState } from 'react';
 import './App.css';
 import Header from './components/Header';
 import NoteList from './components/NoteList';
-
 import { Note } from './models/note.model';
+import { v4 as uuidv4 } from 'uuid';
+import CreateNotes from './components/CreateNote';
 
 
 
 
 function App() {
-  const titleText: string = "This is the title"
-  const [notes,setNotes] = useState<Note[]>([{
-    id: new Date().toString(),
+  const [notes,setNotes] = useState<Note[]>([
+    {
+    id: uuidv4(),
     title: "Meeting",
     text: "Schedule meeting with UI/UX Team",
-    color: "#dfdfdf",
+    color: "#006937",
     date: new Date().toString()
-  }]);
+  },
+  {
+    id: uuidv4(),
+    title: "Meeting",
+    text: "Schedule meeting with Developer Team",
+    color: "#006699",
+    date: new Date().toString()
+  }
+]);
 
   return (
-    <div className="App container">
+    <div className="App">
       <Header />
       <div className='container'>
-            <div className='row'>
-                <div className='col-12 mt-5'>
-                    <NoteList notes={notes} />
-                </div>
-            </div>
-        </div>
+        <CreateNotes notes={notes} setNotes={setNotes} />
+            <NoteList notes={notes} setNotes={setNotes} />
+      </div>
     </div>
   );
 }
